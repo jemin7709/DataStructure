@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\1주차">
+      <UniqueIdentifier>{0cbc8b19-8497-447f-86fd-ea5c646ea40a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\3주차">
+      <UniqueIdentifier>{8c9c3e4e-b580-42c1-83de-4eab92a00324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\4주차">
+      <UniqueIdentifier>{1f9ce0ae-611a-4d8f-9f34-37f7d5723b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\5주차">
+      <UniqueIdentifier>{421e0549-a915-42df-b191-074c49d9bccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\6주차">
+      <UniqueIdentifier>{e13d99d2-0701-4908-8ba9-04307d2c16ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\7주차">
+      <UniqueIdentifier>{be1dd42d-dbb1-47c0-ab97-3041964576af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\스터디">
+      <UniqueIdentifier>{81fc30e2-dcce-481e-bc2d-892f38352f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사">
+      <UniqueIdentifier>{4f451bc2-9f1f-4f63-a4ab-ea06e7e9c40e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사\1주차">
+      <UniqueIdentifier>{e5c6a77b-ac13-47d5-9a08-a6204d7cae99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사\2주차">
+      <UniqueIdentifier>{5ef72d33-56a5-4c8c-bf25-c3aa0f0d81af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사\3주차">
+      <UniqueIdentifier>{0cd21ce8-ce98-4ffb-a63e-82d01aaf51ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사\4주차">
+      <UniqueIdentifier>{83b3ab3b-ae96-4e2a-a20f-beda516341d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사\5주차">
+      <UniqueIdentifier>{e1156494-e77a-4bad-a127-eefe7b65a81b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사\6주차">
+      <UniqueIdentifier>{1f9d78e7-862a-4db7-a5a0-0a3cd29d9b84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\중간고사\7주차">
+      <UniqueIdentifier>{c8c989aa-5a4f-46bf-b5b7-0727abb44cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2주차">
+      <UniqueIdentifier>{32775563-c8da-4381-be7f-39c0bca65733}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="1-1.cpp">
+      <Filter>소스 파일\1주차</Filter>
+    </ClCompile>
+    <ClCompile Include="1-2.cpp">
+      <Filter>소스 파일\1주차</Filter>
+    </ClCompile>
+    <ClCompile Include="2-1.cpp">
+      <Filter>소스 파일\2주차</Filter>
+    </ClCompile>
+    <ClCompile Include="2-2.cpp">
+      <Filter>소스 파일\2주차</Filter>
+    </ClCompile>
+    <ClCompile Include="3-1.cpp">
+      <Filter>소스 파일\3주차</Filter>
+    </ClCompile>
+    <ClCompile Include="4-1.cpp">
+      <Filter>소스 파일\4주차</Filter>
+    </ClCompile>
+    <ClCompile Include="4-2.cpp">
+      <Filter>소스 파일\4주차</Filter>
+    </ClCompile>
+    <ClCompile Include="5-1.cpp">
+      <Filter>소스 파일\5주차</Filter>
+    </ClCompile>
+    <ClCompile Include="5-2.cpp">
+      <Filter>소스 파일\5주차</Filter>
+    </ClCompile>
+    <ClCompile Include="6-1.cpp">
+      <Filter>소스 파일\6주차</Filter>
+    </ClCompile>
+    <ClCompile Include="6-2.cpp">
+      <Filter>소스 파일\6주차</Filter>
+    </ClCompile>
+    <ClCompile Include="7-1.cpp">
+      <Filter>소스 파일\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="7-3.cpp">
+      <Filter>소스 파일\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="7-2.cpp">
+      <Filter>소스 파일\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="7-4.cpp">
+      <Filter>소스 파일\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularQueue.cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="1021(week4).cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="1874(week2).cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="2164(week4).cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="2263.cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="4540(week3).cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="14729(week3).cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree2.cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="프린터.cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="m1-1.cpp">
+      <Filter>소스 파일\중간고사\1주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m1-2.cpp">
+      <Filter>소스 파일\중간고사\1주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m1-3.cpp">
+      <Filter>소스 파일\중간고사\1주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m1-4.cpp">
+      <Filter>소스 파일\중간고사\1주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m2-1.cpp">
+      <Filter>소스 파일\중간고사\2주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m2-2.cpp">
+      <Filter>소스 파일\중간고사\2주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m2-3.cpp">
+      <Filter>소스 파일\중간고사\2주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m2-4.cpp">
+      <Filter>소스 파일\중간고사\2주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m3-1.cpp">
+      <Filter>소스 파일\중간고사\3주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m3-2.cpp">
+      <Filter>소스 파일\중간고사\3주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m3-3.cpp">
+      <Filter>소스 파일\중간고사\3주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m3-4.cpp">
+      <Filter>소스 파일\중간고사\3주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m4-1.cpp">
+      <Filter>소스 파일\중간고사\4주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m4-2.cpp">
+      <Filter>소스 파일\중간고사\4주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m4-3.cpp">
+      <Filter>소스 파일\중간고사\4주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m4-4.cpp">
+      <Filter>소스 파일\중간고사\4주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m5-1.cpp">
+      <Filter>소스 파일\중간고사\5주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m5-2.cpp">
+      <Filter>소스 파일\중간고사\5주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m5-3.cpp">
+      <Filter>소스 파일\중간고사\5주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m5-4.cpp">
+      <Filter>소스 파일\중간고사\5주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m6-1.cpp">
+      <Filter>소스 파일\중간고사\6주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m6-2.cpp">
+      <Filter>소스 파일\중간고사\6주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m6-3.cpp">
+      <Filter>소스 파일\중간고사\6주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m6-4.cpp">
+      <Filter>소스 파일\중간고사\6주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m7-1.cpp">
+      <Filter>소스 파일\중간고사\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m7-2.cpp">
+      <Filter>소스 파일\중간고사\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m7-3.cpp">
+      <Filter>소스 파일\중간고사\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="m7-4.cpp">
+      <Filter>소스 파일\중간고사\7주차</Filter>
+    </ClCompile>
+    <ClCompile Include="3-2.cpp">
+      <Filter>소스 파일\3주차</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CircularQueue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
