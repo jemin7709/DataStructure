@@ -61,6 +61,12 @@
     <Filter Include="소스 파일\2주차">
       <UniqueIdentifier>{32775563-c8da-4381-be7f-39c0bca65733}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\9주차">
+      <UniqueIdentifier>{489ad6d8-8de3-4dad-a12d-0580b35faedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\10주차">
+      <UniqueIdentifier>{14811dee-70ad-4f7b-ab85-b9996f93995d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1-1.cpp">
@@ -224,6 +230,27 @@
     </ClCompile>
     <ClCompile Include="3-2.cpp">
       <Filter>소스 파일\3주차</Filter>
+    </ClCompile>
+    <ClCompile Include="9-1.cpp">
+      <Filter>소스 파일\9주차</Filter>
+    </ClCompile>
+    <ClCompile Include="9-2.cpp">
+      <Filter>소스 파일\9주차</Filter>
+    </ClCompile>
+    <ClCompile Include="2075.cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="11399.cpp">
+      <Filter>소스 파일\스터디</Filter>
+    </ClCompile>
+    <ClCompile Include="10-1.cpp">
+      <Filter>소스 파일\10주차</Filter>
+    </ClCompile>
+    <ClCompile Include="10-2.cpp">
+      <Filter>소스 파일\10주차</Filter>
+    </ClCompile>
+    <ClCompile Include="1715.cpp">
+      <Filter>소스 파일\스터디</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
