@@ -12,7 +12,7 @@ public:
 
 class SPQ {
 public:
-	vector<int> v;
+	vector<int>v;
 
 	int size() {
 		return v.size();
@@ -22,18 +22,20 @@ public:
 		return v.empty();
 	}
 
-	void insert(int e) {
-		vector<int>::iterator p = v.begin();
+	void insert(int data) {
+		vector<int>::iterator i = v.begin();
 		isLess c;
 		if (empty()) {
-			v.insert(p, e);
+			v.push_back(data);
+			return;
 		}
 		else {
-			while (p != v.end() && c(e, *p)) {
-				++p;
+			while (i != v.end() && c(data, *i)) {
+				i++;
 			}
-			v.insert(p, e);
+			v.insert(i, data);
 		}
+		return;
 	}
 
 	int min() {
@@ -42,14 +44,14 @@ public:
 
 	void removemin() {
 		v.pop_back();
-
 	}
 
 	void print() {
-		for (vector<int>::iterator iter = --v.end(); iter != v.begin(); --iter) {
-			cout << *iter << ' ';
+		for (vector<int>::iterator i = --v.end(); i != v.begin(); i--) {
+			cout << *i << " ";
 		}
 		cout << v.front() << endl;
+		return;
 	}
 };
 
@@ -65,5 +67,4 @@ int main() {
 		}
 		q.print();
 	}
-
 }

@@ -57,7 +57,7 @@ public:
 			else if (data > cur->data) {
 				cur = cur->right;
 			}
-			else if (data < cur->data) {
+			else{
 				cur = cur->left;
 			}
 		}
@@ -79,7 +79,7 @@ public:
 				par = cur;
 				cur = cur->right;
 			}
-			else if (data < cur->data) {
+			else{
 				par = cur;
 				cur = cur->left;
 			}
@@ -95,41 +95,65 @@ public:
 
 	void remove(int data) {
 		Node* node = search(data);
-		Node* par = node->par;
+		if (node == root) {
+			if (root->right == NULL) {
+				root = root->left;
+			}
+			else {
+				root = root->right;
+			}
+			delete node;
+			return;
+		}
 
 		if (node->left == NULL && node->right == NULL) {
-			delete node;
-		}
-		else if (node->left == NULL && node->right != NULL) {
-			Node* right = node->right;
-			right->par = par;
-			if (par->data < right->data) {
-				par->right = right;
+			Node* parn = node->par;
+			if (parn->data < node->data) {
+				parn->right = NULL;
 			}
-			else if (par->data > right->data) {
-				par->left = right;
+			else if (parn->data > node->data) {
+				parn->left = NULL;
 			}
 			delete node;
 		}
-		else if (node->left != NULL && node->right == NULL) {
-			Node* left = node->left;
-			left->par = par;
-			if (par->data < left->data) {
-				par->right = left;
+		else if (node->left == NULL || node->right == NULL) {
+			Node* parn = node->par;
+			Node* child = (node->left == NULL) ? node->right : node->left;
+			child->par = parn;
+			if (parn->data < child->data) {
+				parn->right = child;
 			}
-			else if (par->data > left->data) {
-				par->left = left;
+			else if (parn->data > child->data) {
+				parn->left = child;
 			}
 			delete node;
 		}
-		else if (node->left != NULL && node->right != NULL) {
+		else {
 			Node* cur = node->right;
-			Node* par = NULL;
+			Node* parn = NULL;
 			while (cur->left != NULL) {
 				cur = cur->left;
 			}
 			node->data = cur->data;
-			cur = NULL;
+			parn = cur->par;
+			if (cur->right != NULL) {
+				cur->right->par = parn;
+				if (parn == node) {
+					parn->right = cur->right;
+				}
+				else {
+					if (parn->data < cur->data) {
+						parn->right = cur->right;
+					}
+					else if (parn->data > cur->data) {
+						parn->left = cur->right;
+					}
+				}
+			}
+			else {
+				(parn == node) ? parn->right = NULL : parn->left = NULL;
+			}
+			delete cur;
 		}
 	}
 

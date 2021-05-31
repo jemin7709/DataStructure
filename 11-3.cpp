@@ -95,45 +95,67 @@ public:
 
 	void remove(int data) {
 		Node* node = search(data);
-		Node* par = node->par;
+		Node* parn = node->par;
 
 		if (node->left == NULL && node->right == NULL) {
+			if (parn->data < node->data) {
+				parn->right = NULL;
+			}
+			else if (parn->data > node->data) {
+				parn->left = NULL;
+			}
 			delete node;
 		}
 		else if (node->left == NULL && node->right != NULL) {
 			Node* right = node->right;
-			right->par = par;
-			if (par->data < right->data) {
-				par->right = right;
+			right->par = parn;
+			if (parn->data < right->data) {
+				parn->right = right;
 			}
-			else if (par->data > right->data) {
-				par->left = right;
+			else if (parn->data > right->data) {
+				parn->left = right;
 			}
 			delete node;
 		}
 		else if (node->left != NULL && node->right == NULL) {
 			Node* left = node->left;
-			left->par = par;
-			if (par->data < left->data) {
-				par->right = left;
+			left->par = parn;
+			if (parn->data < left->data) {
+				parn->right = left;
 			}
-			else if (par->data > left->data) {
-				par->left = left;
+			else if (parn->data > left->data) {
+				parn->left = left;
 			}
 			delete node;
 		}
-		else if (node->left != NULL && node->right != NULL) {
+		else {
 			Node* cur = node->right;
-			Node* par = NULL;
+			Node* parnn = NULL;
 			while (cur->left != NULL) {
 				cur = cur->left;
 			}
 			node->data = cur->data;
-			cur = NULL;
+			parnn = cur->par;
+			if (cur->right != NULL) {
+				if (parn->data < cur->data) {
+					parn->right = cur->right;
+				}
+				else if (parn->data > cur->data) {
+					parn->left = cur->right;
+				}
+			}
+			else {
+				if (parnn == node) {
+					parnn->right = NULL;
+				}
+				else {
+					parnn->left = NULL;
+				}
+			}
 		}
 	}
-	int count = 0;
 
+	int count = 0;
 	void solution(Node* node) {
 		if (node == NULL) {
 			return;

@@ -70,6 +70,12 @@
     <Filter Include="소스 파일\11주차">
       <UniqueIdentifier>{f7e08ea6-c15a-46ee-84f0-1af518ddb29a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\12주차">
+      <UniqueIdentifier>{54f94f60-6896-4ead-bec2-42f730ac979f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\13주차">
+      <UniqueIdentifier>{c1d3e420-b1c0-45e4-bdd9-e0907153833d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1-1.cpp">
@@ -266,6 +272,36 @@
     </ClCompile>
     <ClCompile Include="11-4.cpp">
       <Filter>소스 파일\11주차</Filter>
+    </ClCompile>
+    <ClCompile Include="12-1.cpp">
+      <Filter>소스 파일\12주차</Filter>
+    </ClCompile>
+    <ClCompile Include="12-2.cpp">
+      <Filter>소스 파일\12주차</Filter>
+    </ClCompile>
+    <ClCompile Include="9-3.cpp">
+      <Filter>소스 파일\9주차</Filter>
+    </ClCompile>
+    <ClCompile Include="9-4.cpp">
+      <Filter>소스 파일\9주차</Filter>
+    </ClCompile>
+    <ClCompile Include="10-3.cpp">
+      <Filter>소스 파일\10주차</Filter>
+    </ClCompile>
+    <ClCompile Include="10-4.cpp">
+      <Filter>소스 파일\10주차</Filter>
+    </ClCompile>
+    <ClCompile Include="13-1.cpp">
+      <Filter>소스 파일\13주차</Filter>
+    </ClCompile>
+    <ClCompile Include="13-2.cpp">
+      <Filter>소스 파일\13주차</Filter>
+    </ClCompile>
+    <ClCompile Include="13-4.cpp">
+      <Filter>소스 파일\13주차</Filter>
+    </ClCompile>
+    <ClCompile Include="13-3.cpp">
+      <Filter>소스 파일\13주차</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

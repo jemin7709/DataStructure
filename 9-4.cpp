@@ -12,7 +12,7 @@ public:
 
 class NSPQ {
 public:
-	vector<int> v;
+	vector<int>v;
 
 	int size() {
 		return v.size();
@@ -22,37 +22,33 @@ public:
 		return v.empty();
 	}
 
-	void insert(int e) {
-		v.push_back(e);
+	void insert(int data) {
+		v.push_back(data);
 	}
 
 	int min() {
+		int min = v.front();
 		vector<int>::iterator p = v.begin();
-		isLess c;
-		int mini = v.front();
-		for (vector<int>::iterator iter = v.begin(); iter != v.end(); iter++) {
-			if (!c(mini, *iter)) {
-				mini = *iter;
-				p = iter;
+		for (vector<int>::iterator i = v.begin(); i != v.end(); i++) {
+			if (min > *i) {
+				min = *i;
+				p = i;
 			}
 		}
-		return *p;
+		return min;
 	}
 
 	void removemin() {
+		int min = v.front();
 		vector<int>::iterator p = v.begin();
-		isLess c;
-		int mini = v.front();
-		for (vector<int>::iterator iter = v.begin(); iter != v.end(); iter++) {
-			if (!c(mini, *iter)) {
-				mini = *iter;
-				p = iter;
+		for (vector<int>::iterator i = v.begin(); i != v.end(); i++) {
+			if (min > *i) {
+				min = *i;
+				p = i;
 			}
 		}
 		v.erase(p);
-
 	}
-
 };
 
 int main() {
@@ -75,5 +71,4 @@ int main() {
 		}
 		cout << s.front() << endl;
 	}
-
 }
