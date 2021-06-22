@@ -1,23 +1,17 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
 class Node {
-private:
+public:
 	int data;
 	Node* par;
 	Node* left;
 	Node* right;
-
-public:
 	Node(int data) {
 		this->data = data;
-		this->par = NULL;
-		this->left = NULL;
-		this->right = NULL;
+		left = right = par = NULL;
 	}
-
 	void setLeft(Node* node) {
 		if (node == NULL) {
 			this->left = NULL;
@@ -27,7 +21,6 @@ public:
 			node->par = this;
 		}
 	}
-
 	void setRight(Node* node) {
 		if (node == NULL) {
 			this->right = NULL;
@@ -37,20 +30,15 @@ public:
 			node->par = this;
 		}
 	}
-
-	friend class BST;
 };
-
 class BST {
 public:
 	Node* root;
-
 	BST() {
-		this->root = NULL;
+		root = NULL;
 	}
-
 	Node* search(int data) {
-		Node* cur = this->root;
+		Node* cur = root;
 		while (cur != NULL) {
 			if (data == cur->data) {
 				return cur;
@@ -64,17 +52,14 @@ public:
 		}
 		return NULL;
 	}
-
 	void insert(int data) {
 		Node* node = new Node(data);
-		if (this->root == NULL) {
-			this->root = node;
+		if (root == NULL) {
+			root = node;
 			return;
 		}
-
 		Node* par = NULL;
-		Node* cur = this->root;
-
+		Node* cur = root;
 		while (cur != NULL) {
 			if (data > cur->data) {
 				par = cur;
@@ -85,75 +70,49 @@ public:
 				cur = cur->left;
 			}
 		}
-
 		if (data > par->data) {
 			par->setRight(node);
 		}
-		else if (data < par->data) {
+		else {
 			par->setLeft(node);
 		}
 	}
-
 	void remove(int data) {
 		Node* node = search(data);
-		if (node == root) {
-			if (root->right == NULL) {
-				root = root->left;
+		Node* parn = node->par;
+		if (node->left == NULL && node->right == NULL) {
+			if (parn->left == node) {
+				parn->left = NULL;
 			}
 			else {
-				root = root->right;
-			}
-			delete node;
-			return;
-		}
-		if (node->left == NULL && node->right == NULL) {
-			Node* parn = node->par;
-			if (parn->data < node->data) {
 				parn->right = NULL;
-			}
-			else if (parn->data > node->data) {
-				parn->left = NULL;
 			}
 			delete node;
 		}
 		else if (node->left == NULL || node->right == NULL) {
-			Node* parn = node->par;
 			Node* child = (node->left == NULL) ? node->right : node->left;
 			child->par = parn;
-			if (parn->data < child->data) {
-				parn->right = child;
+			if (node == root) {
+				root = child;
+				delete node;
+				return;
 			}
-			else if (parn->data > child->data) {
+			if (parn->left == node) {
 				parn->left = child;
+			}
+			else {
+				parn->right = child;
 			}
 			delete node;
 		}
-		else {
+		else if (node->left != NULL && node->right != NULL) {
 			Node* cur = node->right;
-			Node* parn = NULL;
 			while (cur->left != NULL) {
 				cur = cur->left;
 			}
-			node->data = cur->data;
-			parn = cur->par;
-			if (cur->right != NULL) {
-				cur->right->par = parn;
-				if (parn == node) {
-					parn->right = cur->right;
-				}
-				else {
-					if (parn->data < cur->data) {
-						parn->right = cur->right;
-					}
-					else if (parn->data > cur->data) {
-						parn->left = cur->right;
-					}
-				}
-			}
-			else {
-				(parn == node) ? parn->right = NULL : parn->left = NULL;
-			}
-			delete cur;
+			int temp = cur->data;
+			remove(cur->data);
+			node->data = temp;
 		}
 	}
 	int count = 0;

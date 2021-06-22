@@ -73,6 +73,7 @@ public:
 		}
 	}
 };
+
 int check(HashTable* A, HashTable* B, int cnt) {
 	//1. 기어A를 반시계방향으로 cnt칸 회전 -> 기어B 시계방향 회전
 	A->cur = A->rotate(A->cur, cnt);
@@ -84,8 +85,8 @@ int check(HashTable* A, HashTable* B, int cnt) {
 	//1-2. 이미 부착된 경우 2단계로
 	else {
 		//2. 기어B의 맞물린 톱니 숫자만큼 시계방향 회전 -> 기어A 반시계방향 회전
-		A->cur = A->rotate(A->cur, B->cur);
-		B->cur = B->rotate(B->cur, -B->cur);
+		A->cur = A->rotate(A->cur, -B->cur);
+		B->cur = B->rotate(B->cur, B->cur);
 
 		//2-1. A의 맞물린 톱니에 점검스티커 부착 후 종료 (ISITEM)
 		if (A->put(A->cur)) return A->cur;
@@ -95,8 +96,8 @@ int check(HashTable* A, HashTable* B, int cnt) {
 			//3. A의 맞물린 톱니에 스티커가 없을 때까지 B를 반시계방향 회전 -> 기어A 시계방향 회전
 			//3-1. 스티커가 부착되지 않은 톱니를 만나면 스티커 부착후 종료 (ISITEM)
 			while (A->put(A->cur) != true) {
-				A->cur = A->rotate(A->cur, -1);
-				B->cur = B->rotate(B->cur, 1);
+				A->cur = A->rotate(A->cur, 1);
+				B->cur = B->rotate(B->cur, -1);
 			}
 			return A->cur;
 		}

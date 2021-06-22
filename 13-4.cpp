@@ -1,240 +1,57 @@
 #include <iostream>
-#include <string>
 #include <vector>
+#include <string>
 using namespace std;
 
-struct vertex {
-	int vertex_id;
-	int matrix_id;
-	vertex* next;
-	vertex* prev;
-
-	vertex() {
-		vertex_id = matrix_id = -1;
-		prev = next = NULL;
-	}
-	vertex(int vertex_id) {
-		this->vertex_id = vertex_id;
-		matrix_id = -1;
-		prev = next = NULL;
-	}
-};
-
-struct edge {
-	vertex* src;
-	vertex* dst;
-	edge* next;
-	edge* prev;
-
-	edge() {
-		src = dst = NULL;
-		prev = next = NULL;
-	}
-	edge(vertex* src, vertex* dst) {
-		this->src = src;
-		this->dst = dst;
-		prev = next = NULL;
-	}
-};
-
-class VertexList {
-private:
-	vertex* header;
-	vertex* trailer;
-
+#define MAX 500
+class VectorGraph {
 public:
-	VertexList() {
-		header = new vertex();
-		trailer = new vertex();
-		header->next = trailer;
-		trailer->prev = header;
+	int matrix[MAX][MAX] = { 0 };
+	vector<int>vertexlist;
+	int size;
+
+	VectorGraph() {
+		size = 0;
 	}
 
-	void insert_back(vertex* new_vertex) {
-		new_vertex->prev = trailer->prev;
-		new_vertex->next = trailer;
-		new_vertex->matrix_id = new_vertex->prev->matrix_id + 1;
-		trailer->prev->next = new_vertex;
-		trailer->prev = new_vertex;
-		return;
-	}
-
-	void remove(vertex* del_vertex) {
-		for (vertex* cur = del_vertex->next; cur != trailer; cur = cur->next) {
-			cur->matrix_id--;
-		}
-		del_vertex->prev->next = del_vertex->next;
-		del_vertex->next->prev = del_vertex->prev;
-		delete del_vertex;
-		return;
-	}
-
-	vertex* find_vertex(int vertex_id) {
-		for (vertex* cur = header->next; cur != trailer; cur = cur->next) {
-			if (cur->vertex_id == vertex_id) {
-				return cur;
+	int find_vertex(int vertex) {
+		for (int i = 0; i < size; i++) {
+			if (vertexlist[i] == vertex) {
+				return i;
 			}
 		}
-		return NULL;
-	}
-};
-
-class EdgeList {
-private:
-	edge* header;
-	edge* trailer;
-public:
-	EdgeList() {
-		header = new edge();
-		trailer = new edge();
-		header->next = trailer;
-		trailer->prev = header;
+		return -1;
 	}
 
-	void insert_back(edge* new_edge) {
-		new_edge->prev = trailer->prev;
-		new_edge->next = trailer;
-		trailer->prev->next = new_edge;
-		trailer->prev = new_edge;
-		return;
+	void insert_vertex(int vertex) {
+		vertexlist.push_back(vertex);
+		size++;
 	}
 
-	void remove(edge* del_edge) {
-		del_edge->prev->next = del_edge->next;
-		del_edge->next->prev = del_edge->prev;
-		delete del_edge;
-		return;
-	}
-};
-
-class Graph {
-private:
-	edge*** edge_matrix;
-	VertexList vertex_list;
-	EdgeList edge_list;
-	int vertex_size;
-public:
-	Graph() {
-		vertex_size = 0;
-		edge_matrix = NULL;
+	void erase_vertex(int vertex) {
+		int i = find_vertex(vertex);
+		vertexlist.erase(vertexlist.begin() + i);
+		size--;
 	}
 
-	void insert_vertex(int vertex_id) {
-		if (vertex_list.find_vertex(vertex_id) != NULL) {
-			return;
-		}
-
-		vertex* new_vertex = new vertex(vertex_id);
-		edge*** new_matrix = new edge * *[vertex_size + 1];
-		for (int i = 0; i < vertex_size + 1; i++) {
-			new_matrix[i] = new edge * [vertex_size + 1];
-		}
-		for (int i = 0; i < vertex_size; i++) {
-			for (int j = 0; j < vertex_size; j++) {
-				new_matrix[i][j] = edge_matrix[i][j];
-			}
-		}
-		for (int i = 0; i < vertex_size + 1; i++) {
-			new_matrix[i][vertex_size] = new_matrix[vertex_size][i] = NULL;
-		}
-		for (int i = 0; i < vertex_size; i++) {
-			delete[] edge_matrix[i];
-		}
-		delete[] edge_matrix;
-
-		edge_matrix = new_matrix;
-		vertex_list.insert_back(new_vertex);
-		vertex_size++;
-		return;
+	void insert_edge(int vertex1, int vertex2) {
+		int idx1 = find_vertex(vertex1);
+		int idx2 = find_vertex(vertex2);
+		matrix[idx1][idx2] = 1;
+		matrix[idx2][idx1] = 1;
 	}
 
-	void erase_vertex(int vertex_id) {
-		vertex* del_vertex = vertex_list.find_vertex(vertex_id);
-		if (del_vertex == NULL) {
-			return;
-		}
-
-		int del_idx = del_vertex->matrix_id;
-		edge*** new_matrix = new edge * *[vertex_size - 1];
-		for (int i = 0; i < vertex_size - 1; i++) {
-			new_matrix[i] = new edge * [vertex_size - 1];
-		}
-		for (int i = 0; i < vertex_size - 1; i++) {
-			for (int j = 0; j < vertex_size - 1; j++) {
-				if (i < del_idx && j < del_idx) {
-					new_matrix[i][j] = edge_matrix[i][j];
-				}
-				else if (i < del_idx) {
-					new_matrix[i][j] = edge_matrix[i][j + 1];
-				}
-				else if (j < del_idx) {
-					new_matrix[i][j] = edge_matrix[i + 1][j];
-				}
-				else {
-					new_matrix[i][j] = edge_matrix[i + 1][j + 1];
-				}
-			}
-		}
-		for (int i = 0; i < vertex_size; i++) {
-			if (edge_matrix[del_idx][i] != NULL) {
-				edge_list.remove(edge_matrix[del_idx][i]);
-			}
-		}
-		for (int i = 0; i < vertex_size; i++) {
-			delete[] edge_matrix[i];
-		}
-		delete[] edge_matrix;
-
-		edge_matrix = new_matrix;
-		vertex_list.remove(del_vertex);
-		vertex_size--;
-		return;
+	void erase_edge(int vertex1, int vertex2) {
+		int idx1 = find_vertex(vertex1);
+		int idx2 = find_vertex(vertex2);
+		matrix[idx1][idx2] = 0;
+		matrix[idx2][idx1] = 0;
 	}
 
-	void insert_edge(int src_vertex_id, int dst_vertex_id) {
-		vertex* src_vertex = vertex_list.find_vertex(src_vertex_id);
-		vertex* dst_vertex = vertex_list.find_vertex(dst_vertex_id);
-		if (src_vertex == NULL || dst_vertex == NULL) {
-			return;
-		}
-		int src_id = src_vertex->matrix_id;
-		int dst_id = dst_vertex->matrix_id;
-
-		if (edge_matrix[src_id][dst_id] != NULL || edge_matrix[dst_id][src_id] != NULL) {
-			return;
-		}
-
-		edge* new_edge = new edge(src_vertex, dst_vertex);
-		edge_list.insert_back(new_edge);
-		edge_matrix[src_id][dst_id] = edge_matrix[dst_id][src_id] = new_edge;
-		return;
-	}
-
-	void erase_edge(int src_vertex_id, int dst_vertex_id) {
-		vertex* src_vertex = vertex_list.find_vertex(src_vertex_id);
-		vertex* dst_vertex = vertex_list.find_vertex(dst_vertex_id);
-		if (src_vertex == NULL || dst_vertex == NULL) {
-			return;
-		}
-		int src_id = src_vertex->matrix_id;
-		int dst_id = dst_vertex->matrix_id;
-
-		if (edge_matrix[src_id][dst_id] == NULL || edge_matrix[dst_id][src_id] == NULL) {
-			return;
-		}
-
-		edge_list.remove(edge_matrix[src_id][dst_id]);
-		edge_matrix[src_id][dst_id] = edge_matrix[dst_id][src_id] = NULL;
-		return;
-	}
-
-	bool isAdjacentTo(int src_vertex_id, int dst_vertex_id) {
-		vertex* src_vertex = vertex_list.find_vertex(src_vertex_id);
-		vertex* dst_vertex = vertex_list.find_vertex(dst_vertex_id);
-		int src_id = src_vertex->matrix_id;
-		int dst_id = dst_vertex->matrix_id;
-
-		if (edge_matrix[src_id][dst_id] != NULL || edge_matrix[dst_id][src_id] != NULL) {
+	bool isAdjacentTo(int vertex1, int vertex2) {
+		int idx1 = find_vertex(vertex1);
+		int idx2 = find_vertex(vertex2);
+		if (matrix[idx1][idx2] != 0) {
 			return true;
 		}
 		else {
@@ -242,25 +59,11 @@ public:
 		}
 	}
 
-	bool vertices1(int src_vertex_id, int dst_vertex_id) {
-		vertex* vertex1 = vertex_list.find_vertex(src_vertex_id);
-		vertex* vertex2 = vertex_list.find_vertex(dst_vertex_id);
-		int id1 = vertex1->matrix_id;
-		int id2 = vertex2->matrix_id;
-		if (edge_matrix[id1][id2] != NULL) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	vector<int> vertices(int src_vertex_id) {
-		vertex* vertex1 = vertex_list.find_vertex(src_vertex_id);
-		int id = vertex1->matrix_id;
+	vector<int> oppositeVertexes(int vertex) {
+		int idx = find_vertex(vertex);
 		vector<int>list;
-		for (int i = 0; i < vertex_size; i++) {
-			if (edge_matrix[id][i] != NULL) {
+		for (int i = 0; i < size; i++) {
+			if (matrix[idx][i] != 0) {
 				list.push_back(i);
 			}
 		}
@@ -270,53 +73,45 @@ public:
 
 int main() {
 	int n, m, x;
-	cin >> n >> m;
-	Graph g;
+	cin >> n >> m; // 가입자수 n과 질의의 수 m입력
+	VectorGraph g; // 인접행렬 그래프 g 생성
 	for (int i = 1; i < n + 1; i++) {
-		g.insert_vertex(i);
+		g.insert_vertex(i); // 가입자수만큼 정점 생성
 	}
-	for (int i = 1; i < n + 1; i++) {
-		for (int j = 1; j < n + 1; j++) {
-			cin >> x;
-			if (x == 1) {
-				g.insert_edge(i, j);
+	for (int i = 1; i < n + 1; i++) { // 2x2배열로 입력이 들어오므로
+		for (int j = 1; j < n + 1; j++) { // 2중 for문
+			cin >> x; // 0 or 1 입력
+			if (x == 1) { // 1이 입력된 경우
+				g.insert_edge(i, j); // i, j자리에 엣지를 추가
 			}
 		}
 	}
 	while (m--) {
-		vector<int>list;
-		vector<int>list2;
-		vector<bool>ans;
+		vector<int>list; // 친구 목록을 담을 배열
+		vector<int>list2; // 친구의 친구 목록을 담을 배열
+		vector<bool>ans; // 친구의 친구가 몇번째인지 확인할 배열
+		bool check = false; // 친구의 친구가 존재하는지 존재하지 않는지 확인
 		for (int i = 0; i < n; i++) {
-			ans.push_back(false);
+			ans.push_back(false); // 친구의 친구 배열을 초기화
 		}
-		cin >> x;
-		list = g.vertices(x);
+		cin >> x; // 확인할 정점 입력
+		list = g.oppositeVertexes(x); // 친구 목록 가져오기
 		for (int i : list) {
-			list2 = g.vertices(i+1);
+			list2 = g.oppositeVertexes(i + 1); // 친구의 친구 목록 가져오기
 			for (int j = 0; j < list2.size(); j++) {
-				if (list2[j] + 1 != x && !g.vertices1(x, list2[j] + 1)) {
-					ans[list2[j]] = true;
+				if (list2[j] + 1 != x && !g.isAdjacentTo(x, list2[j] + 1)) { // 본인을 제외하고 거리가 친구면서 친구의 친구인 친구도 제외
+					ans[list2[j]] = true; // 해당 번호의 친구가 있다고 변경
 				}
 			}
 		}
-		bool v = ans[0];
-		bool check = false;
-		for (bool e : ans) {
-			if (v != e) {
-				check = true;
-				break;
+		for (int i = 0; i < ans.size(); i++) { // 친구 목록을 읽어오기
+			if (ans[i] == true) { // 친구가 있다면
+				cout << i + 1 << " "; // 몇번째인지 출력
+				check = true; // 친구의 친구가 존재한다고 변경
 			}
 		}
-		if (check) {
-			for (int i = 0; i < ans.size(); i++) {
-				if (ans[i] == true) {
-					cout << i + 1 << " ";
-				}
-			}
-		}
-		else {
-			cout << 0;
+		if (!check) { // 친구의 친구가 존재하지 않는다면
+			cout << 0; // 0 출력
 		}
 		cout << endl;
 	}

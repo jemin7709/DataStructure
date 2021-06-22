@@ -34,13 +34,18 @@ class HashTable {
 private:
 	Entry* hashTable;
 	int capacity;
+	int hashnum;
 
 	int hashFunc(int key) {
 		return key % capacity;
 	}
+	int hashFunc2(int key) {
+		return hashnum - (key % hashnum);
+	}
 public:
-	HashTable(int N) {
+	HashTable(int N, int hashnum) {
 		this->capacity = N;
+		this->hashnum = hashnum;
 		hashTable = new Entry[capacity];
 		return;
 	}
@@ -50,7 +55,7 @@ public:
 		int probing = 1;
 
 		while (hashTable[index].valid == ISITEM && probing <= capacity) {
-			index = hashFunc(index + 1);
+			index = hashFunc(index + hashFunc2(key));
 			probing++;
 		}
 		if (probing > capacity) {
@@ -70,8 +75,7 @@ public:
 				hashTable[index].erase();
 				return;
 			}
-
-			index = hashFunc(index + 1);
+			index = hashFunc(index + hashFunc2(key));
 			probing++;
 		}
 		cout << "None" << endl;
@@ -86,7 +90,7 @@ public:
 			if (hashTable[index].valid == ISITEM && hashTable[index].key == key) {
 				return hashTable[index].value;
 			}
-			index = hashFunc(index + 1);
+			index = hashFunc(index + hashFunc2(key));
 			probing++;
 		}
 		return "None";
@@ -94,10 +98,10 @@ public:
 };
 
 int main() {
-	int t, n, k;
+	int t, n, k, num;
 	string c, v;
-	cin >> t >> n;
-	HashTable h(n);
+	cin >> t >> n >> num;
+	HashTable h(n, num);
 	while (t--) {
 		cin >> c;
 		if (c == "put") {
